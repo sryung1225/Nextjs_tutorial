@@ -4,27 +4,23 @@ import { useRouter } from "next/router";
 export default function NavBar() {
   const router = useRouter();
   return (
-    <nav>
-      <Link href="/" className={router.pathname === "/" ? "active" : ""}>
+    <nav className="bg-[tomato]">
+      <Link
+        href="/"
+        className={`no-underline ${
+          router.pathname === "/" ? "text-[yellow]" : ""
+        }`}
+      >
         Home
       </Link>
       <Link
         href="/about"
-        className={router.pathname === "/about" ? "active" : ""}
+        className={`no-underline ${
+          router.pathname === "/about" ? "text-[yellow]" : ""
+        }`}
       >
         About
       </Link>
-      <style jsx global>{`
-        nav {
-          background-color: tomato;
-        }
-        a {
-          text-decoration: none;
-        }
-        .active {
-          color: yellow;
-        }
-      `}</style>
     </nav>
   );
 }
