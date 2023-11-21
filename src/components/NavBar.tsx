@@ -4,19 +4,19 @@ import { useRouter } from "next/router";
 export default function NavBar() {
   const router = useRouter();
   return (
-    <nav className="bg-[tomato]">
+    <nav className="flex justify-center items-center gap-2.5 py-5 nav-box-shadow">
       <Link
         href="/"
-        className={`no-underline ${
-          router.pathname === "/" ? "text-[yellow]" : ""
+        className={`font-medium text-lg ${
+          router.pathname === "/" ? "text-[tomato]" : ""
         }`}
       >
         Home
       </Link>
       <Link
         href="/about"
-        className={`no-underline ${
-          router.pathname === "/about" ? "text-[yellow]" : ""
+        className={`font-medium text-lg ${
+          router.pathname === "/about" ? "text-[tomato]" : ""
         }`}
       >
         About
