@@ -1,13 +1,13 @@
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
-import NavBar from "@/components/NavBar";
+import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <NavBar />
-      <Component {...pageProps} />
-      <span>Custom App 테스트</span>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }
