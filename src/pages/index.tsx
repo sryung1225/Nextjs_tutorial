@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Seo from "@/components/Seo";
+import Image from "next/image";
 
 const API_KEY = "";
 
@@ -33,12 +34,19 @@ export default function Home() {
     })();
   }, []);
   return (
-    <div>
+    <div className="grid grid-cols-1 p-5 gap-5">
       <Seo title="Home" />
       {!movies && <h4>Loading...</h4>}
       {movies?.map((movie) => (
-        <div key={movie.id}>
-          <h4>{movie.original_title}</h4>
+        <div key={movie.id} className="group">
+          <Image
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            width={500}
+            height={800}
+            alt={`<${movie.original_title}> poster`}
+            className="rounded-xl transition-transform transform-gpu group-hover:scale-105 group-hover:translate-y-[-10px] duration-200 shadow-md"
+          />
+          <h4 className="text-center text-lg">{movie.original_title}</h4>
         </div>
       ))}
     </div>

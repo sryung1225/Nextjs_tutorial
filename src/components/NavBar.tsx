@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default function NavBar() {
   const router = useRouter();
   return (
-    <nav className="flex flex-col items-center gap-2.5 pt-2.5 pb-5 nav-box-shadow">
+    <nav className="flex flex-col items-center gap-2.5 pt-2.5 pb-5 shadow-lg">
       <Image
         src="/vercel.svg"
         width={100}
