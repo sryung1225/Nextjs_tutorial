@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div className="grid grid-cols-2 p-5 gap-5 shadow-lg">
       <Seo title="Home" />
-      {!movies && <h4>Loading...</h4>}
+      {!movies.length && <h4>Loading...</h4>}
       {movies?.map((movie) => (
         <div key={movie.id} className="group">
           <Image
