@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Seo from "@/components/Seo";
 import Image from "next/image";
 
@@ -19,19 +19,13 @@ interface IMovie {
   vote_count: number;
 }
 
-export default function Home() {
-  const [movies, setMovies] = useState<IMovie[]>([]);
-  useEffect(() => {
-    (async () => {
-      const { results } = await (await fetch("api/movies")).json();
-      setMovies(results);
-    })();
-  }, []);
+export default function Home({
+  results,
+}: InferGetServerSidePropsType<GetServerSideProps>) {
   return (
     <div className="grid grid-cols-2 p-5 gap-5 shadow-lg">
       <Seo title="Home" />
-      {!movies.length && <h4>Loading...</h4>}
-      {movies?.map((movie) => (
+      {results?.map((movie: IMovie) => (
         <div key={movie.id} className="group">
           <Image
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -47,4 +41,15 @@ export default function Home() {
       ))}
     </div>
   );
+}
+
+export async function getServerSideProps({}: GetServerSideProps) {
+  const { results } = await (
+    await fetch("http://localhost:3000/api/movies")
+  ).json();
+  return {
+    props: {
+      results,
+    },
+  };
 }
