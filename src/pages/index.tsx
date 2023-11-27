@@ -34,7 +34,7 @@ export default function Home() {
     })();
   }, []);
   return (
-    <div className="grid grid-cols-1 p-5 gap-5">
+    <div className="grid grid-cols-2 p-5 gap-5 shadow-lg">
       <Seo title="Home" />
       {!movies && <h4>Loading...</h4>}
       {movies?.map((movie) => (
@@ -44,9 +44,11 @@ export default function Home() {
             width={500}
             height={800}
             alt={`<${movie.original_title}> poster`}
-            className="rounded-xl transition-transform transform-gpu group-hover:scale-105 group-hover:translate-y-[-10px] duration-200 shadow-md"
+            className="rounded-xl shadow-md transition-transform transform-gpu group-hover:scale-105 group-hover:translate-y-[-10px] duration-200"
           />
-          <h4 className="text-center text-lg">{movie.original_title}</h4>
+          <h4 className="text-center text-lg font-semibold">
+            {movie.original_title}
+          </h4>
         </div>
       ))}
     </div>
