@@ -4,7 +4,7 @@ type TMovieDetailParams = [string, number];
 
 export default function Detail() {
   const router = useRouter();
-  const [title, id] = router.query.params as TMovieDetailParams;
+  const [title, id] = (router.query.params as TMovieDetailParams) || [];
   // console.log(router);
   return (
     <>
