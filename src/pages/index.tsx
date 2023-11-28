@@ -24,8 +24,16 @@ export default function Home({
   results,
 }: InferGetServerSidePropsType<GetServerSideProps>) {
   const router = useRouter();
-  const onClick = (id: number) => {
-    router.push(`/movies/${id}`);
+  const onClick = (id: number, title: string) => {
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
   };
   return (
     <div className="grid grid-cols-2 p-5 gap-5 shadow-lg">
@@ -33,7 +41,7 @@ export default function Home({
       {results?.map((movie: IMovie) => (
         <div
           key={movie.id}
-          onClick={() => onClick(movie.id)}
+          onClick={() => onClick(movie.id, movie.original_title)}
           className="group cursor-pointer"
         >
           <Image
