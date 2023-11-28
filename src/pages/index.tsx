@@ -1,6 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import Seo from "@/components/Seo";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import Seo from "@/components/Seo";
 
 interface IMovie {
   adult: boolean;
@@ -22,11 +23,19 @@ interface IMovie {
 export default function Home({
   results,
 }: InferGetServerSidePropsType<GetServerSideProps>) {
+  const router = useRouter();
+  const onClick = (id: number) => {
+    router.push(`/movies/${id}`);
+  };
   return (
     <div className="grid grid-cols-2 p-5 gap-5 shadow-lg">
       <Seo title="Home" />
       {results?.map((movie: IMovie) => (
-        <div key={movie.id} className="group">
+        <div
+          key={movie.id}
+          onClick={() => onClick(movie.id)}
+          className="group cursor-pointer"
+        >
           <Image
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             width={500}
@@ -34,7 +43,7 @@ export default function Home({
             alt={`<${movie.original_title}> poster`}
             className="rounded-xl shadow-md transition-transform transform-gpu group-hover:scale-105 group-hover:translate-y-[-10px] duration-200"
           />
-          <h4 className="text-center text-lg font-semibold">
+          <h4 className="block text-center text-lg font-semibold">
             {movie.original_title}
           </h4>
         </div>
