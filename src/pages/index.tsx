@@ -25,15 +25,7 @@ export default function Home({
 }: InferGetServerSidePropsType<GetServerSideProps>) {
   const router = useRouter();
   const onClick = (id: number, title: string) => {
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   };
   return (
     <div className="grid grid-cols-2 p-5 gap-5 shadow-lg">
